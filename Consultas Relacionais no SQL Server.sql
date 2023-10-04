@@ -1,62 +1,55 @@
 /*Objetivo 01 - Buscar o nome e ano dos filmes*/
-
 SELECT TOP (50)
 	FL.[Nome]
-    , FL.[Ano]
+	, FL.[Ano]
 FROM [Filmes].[dbo].[Filmes] AS FL;
 
 /*Objetivo 02 - Buscar o nome e ano dos filmes, ordenados por ordem crescente pelo ano*/
-
 SELECT TOP (50)
 	FL.[Nome]
-    , FL.[Ano]
+	, FL.[Ano]
 	, FL.[Duracao]
 FROM [Filmes].[dbo].[Filmes] AS FL
 ORDER BY FL.ANO;
 
-/*Objetivo 03 - Buscar pelo filme de volta para o futuro, trazendo o nome, ano e a duração*/
-
+/*Objetivo 03 - Buscar pelo filme de volta para o futuro, trazendo o nome, ano e a duraÃ§Ã£o*/
 SELECT TOP (50)
 	FL.[Nome]
-    , FL.[Ano]
+	, FL.[Ano]
 	, FL.[Duracao]
 FROM [Filmes].[dbo].[Filmes] AS FL
 WHERE
 	FL.Nome = 'De Volta para o Futuro';
 
-/*Objetivo 04 - Buscar os filmes lançados em 1997*/
-
+/*Objetivo 04 - Buscar os filmes lanÃ§ados em 1997*/
 SELECT TOP (50)
 	FL.[Nome]
-    , FL.[Ano]
+	, FL.[Ano]
 	, FL.[Duracao]
 FROM [Filmes].[dbo].[Filmes] AS FL
 WHERE
 	FL.Ano = 1997;
 
-/*Objetivo 05 - Buscar os filmes lançados APÓS o ano 2000*/
-
+/*Objetivo 05 - Buscar os filmes lanÃ§ados APÃ“S o ano 2000*/
 SELECT TOP (50)
 	FL.[Nome]
-    , FL.[Ano]
+	, FL.[Ano]
 	, FL.[Duracao]
 FROM [Filmes].[dbo].[Filmes] AS FL
 WHERE
 	FL.Ano > 2000;
 
 /*Objetivo 06 - Buscar os filmes com a duracao maior que 100 e menor que 150, ordenando pela duracao em ordem crescente*/
-
 SELECT TOP (50)
 	FL.[Nome]
-    , FL.[Ano]
+	, FL.[Ano]
 	, FL.[Duracao]
 FROM [Filmes].[dbo].[Filmes] AS FL
 WHERE
 	FL.Duracao > 100 AND FL.Duracao < 150
 ORDER BY FL.Duracao;
 
-/*Objetivo 07 - Buscar a quantidade de filmes lançadas no ano, agrupando por ano, ordenando pela duracao em ordem decrescente*/
-
+/*Objetivo 07 - Buscar a quantidade de filmes lanÃ§adas no ano, agrupando por ano, ordenando pela duracao em ordem decrescente*/
 SELECT TOP (50)
 	FL.[Ano]
 	, COUNT(*) AS 'Quantidade'
@@ -64,8 +57,7 @@ FROM [Filmes].[dbo].[Filmes] AS FL
 GROUP BY FL.ANO
 ORDER BY SUM(FL.[Duracao]) DESC;
 
-/*Objetivo 08 - Buscar os Atores do gênero masculino, retornando o PrimeiroNome, UltimoNome*/
-
+/*Objetivo 08 - Buscar os Atores do gÃªnero masculino, retornando o PrimeiroNome, UltimoNome*/
 SELECT TOP (50)
 	AR.[Id]
 	, AR.[PrimeiroNome]
@@ -76,8 +68,7 @@ WHERE
 	AR.Genero = 'M'
 ORDER BY AR.[Id];
 
-/*Objetivo 09 - Buscar os Atores do gênero feminino, retornando o PrimeiroNome, UltimoNome, e ordenando pelo PrimeiroNome*/
-
+/*Objetivo 09 - Buscar os Atores do gÃªnero feminino, retornando o PrimeiroNome, UltimoNome, e ordenando pelo PrimeiroNome*/
 SELECT TOP (50)
 	AR.[Id]
 	, AR.[PrimeiroNome]
@@ -88,8 +79,7 @@ WHERE
 	AR.Genero = 'F'
 ORDER BY AR.[PrimeiroNome];
 
-/*Objetivo 10 - Buscar o nome do filme e o gênero*/
-
+/*Objetivo 10 - Buscar o nome do filme e o gÃªnero*/
 SELECT TOP (50)
 	FL.[Nome]
 	, GR.[Genero]
@@ -98,8 +88,7 @@ FROM [Filmes].[dbo].[Filmes] AS FL
 	INNER JOIN [Filmes].[dbo].[Generos] AS GR ON (GR.Id = FLG.IdGenero)
 ORDER BY GR.[Genero], FL.[Nome];
 
-/*Objetivo 11 - Buscar o nome do filme e o gênero do tipo "Mistério"*/
-
+/*Objetivo 11 - Buscar o nome do filme e o gÃªnero do tipo "MistÃ©rio"*/
 SELECT TOP (50)
 	FL.[Nome]
 	, GR.[Genero]
@@ -107,11 +96,10 @@ FROM [Filmes].[dbo].[Filmes] AS FL
 	INNER JOIN [Filmes].[dbo].[FilmesGenero] AS FLG ON (FLG.IdFilme = FL.Id)
 	INNER JOIN [Filmes].[dbo].[Generos] AS GR ON (GR.Id = FLG.IdGenero)
 WHERE
-	GR.Genero = 'Mistério'
+	GR.Genero = 'MistÃ©rio'
 ORDER BY GR.[Genero], FL.[Nome];
 
 /*Objetivo 12 - Buscar o nome do filme e os atores, trazendo o PrimeiroNome, UltimoNome e seu Papel*/
-
 SELECT TOP (50)
 	FL.[Nome]
 	, AR.[PrimeiroNome]
